@@ -1,0 +1,154 @@
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pom.xml	(date 1534872654563)
++++ pom.xml	(date 1534872654563)
+@@ -0,0 +1,30 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project xmlns="http://maven.apache.org/POM/4.0.0"
++         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
++    <modelVersion>4.0.0</modelVersion>
++
++    <groupId>Web_part1</groupId>
++    <artifactId>Web_part1</artifactId>
++    <version>1.0-SNAPSHOT</version>
++    <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server -->
++    <dependencies>
++    <dependency>
++        <groupId>org.eclipse.jetty</groupId>
++        <artifactId>jetty-server</artifactId>
++        <version>9.3.0.M1</version>
++    </dependency>
++        <dependency>
++            <groupId>org.eclipse.jetty</groupId>
++            <artifactId>jetty-webapp</artifactId>
++            <version>9.4.2.v20170220</version>
++        </dependency>
++        <dependency>
++            <groupId>org.freemarker</groupId>
++            <artifactId>freemarker</artifactId>
++            <version>2.3.23</version>
++        </dependency>
++    </dependencies>
++
++
++</project>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(date 1534870272837)
++++ .idea/misc.xml	(date 1534870272837)
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ExternalStorageConfigurationManager" enabled="true" />
++  <component name="MavenProjectsManager">
++    <option name="originalFiles">
++      <list>
++        <option value="$PROJECT_DIR$/pom.xml" />
++      </list>
++    </option>
++  </component>
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_9" project-jdk-name="9.0" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+Index: Web_part1.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Web_part1.iml	(date 1534870272749)
++++ Web_part1.iml	(date 1534870272749)
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4" />
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(date 1534873236549)
++++ .idea/vcs.xml	(date 1534873236549)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/compiler.xml	(date 1534870272890)
++++ .idea/compiler.xml	(date 1534870272890)
+@@ -0,0 +1,13 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <annotationProcessing>
++      <profile name="Maven default annotation processors profile" enabled="true">
++        <sourceOutputDir name="target/generated-sources/annotations" />
++        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
++        <outputRelativeToContentRoot value="true" />
++        <module name="Web_part1" />
++      </profile>
++    </annotationProcessing>
++  </component>
++</project>
+\ No newline at end of file
+Index: src/main/java/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/Main.java	(date 1534871874716)
++++ src/main/java/Main.java	(date 1534871874716)
+@@ -0,0 +1,11 @@
++import org.eclipse.jetty.server.Server;
++
++public class Main {
++    public static void main(String[] args) throws Exception
++    {
++        Server server = new Server(8080);
++        server.setHandler(new HelloHandler());
++        server.start();
++        server.join();
++    }
++}
+Index: src/main/java/HelloHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/HelloHandler.java	(date 1534871864637)
++++ src/main/java/HelloHandler.java	(date 1534871864637)
+@@ -0,0 +1,18 @@
++import org.eclipse.jetty.server.Request;
++import org.eclipse.jetty.server.handler.AbstractHandler;
++
++import javax.servlet.ServletException;
++import javax.servlet.http.HttpServletRequest;
++import javax.servlet.http.HttpServletResponse;
++import java.io.IOException;
++
++public class HelloHandler extends AbstractHandler {
++    public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
++            throws IOException, ServletException
++    {
++        response.setContentType("text/html;charset=utf-8");
++        response.setStatus(HttpServletResponse.SC_OK);
++        baseRequest.setHandled(true);
++        response.getWriter().println("<h1>Hello World</h1>");
++    }
++}
